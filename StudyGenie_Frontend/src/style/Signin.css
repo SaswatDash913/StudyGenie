@@ -1,0 +1,85 @@
+
+.signIn-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #0f0f0f;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+
+.SignIn-inner {
+  background-color: #1a1a1a;
+  padding: 40px 30px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.05);
+}
+
+
+.UserName-singin,
+.email-singin,
+.password-signin,
+.submit-signin {
+  margin-bottom: 20px;
+}
+
+
+.SignIn-inner input {
+  width: 99%;
+  padding: 14px 16px;
+  background-color: #2a2a2a;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.SignIn-inner input::placeholder {
+  color: #aaa;
+}
+
+.SignIn-inner input:focus {
+  background-color: #333;
+  outline: none;
+  box-shadow: 0 0 0 2px #00bcd4;
+}
+
+
+.submit-signin-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: #00bcd4;
+  color: #000;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-signin-btn:hover {
+  background-color: #0097a7;
+}
+.already-signup {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.switch-to-login-btn {
+  background: none;
+  border: none;
+  color: #00bcd4;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.switch-to-login-btn:hover {
+  color: #0097a7;
+}
