@@ -1,4 +1,4 @@
-from langchain_community.document_loaders import PyMuPDFLoader
+from langchain_community.document_loaders import PyMuPDFLoader,Docx2txtLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings
@@ -22,8 +22,12 @@ CORS(app,supports_credentials=True, resources={r"/*": {"origins":"http://localho
 qa_chain = None
 
 
-def DocLoader(pdf_path):
-    loader = PyMuPDFLoader(pdf_path)
+def DocLoader(file_path):
+    ext = os.path.splitext(file_path)[1].lower()
+    if(ext == '.pdf'):
+        loader = PyMuPDFLoader(file_path)
+    elif(ext == '.docx'):
+        loader = Docx2txtLoader(file_path)
     return loader.load()
 
 
@@ -100,18 +104,23 @@ def create_chain_with_gemini(faiss_index):
 @app.route('/upload', methods=['POST'])  
 def upload_pdf():
     print("Received a request on /upload") 
-    if 'pdf' not in request.files:  
+    if 'file' not in request.files:  
         return jsonify({"error": "No file uploaded or received"}), 400
 
-    pdf = request.files['pdf']
-    filename = secure_filename(pdf.filename)
+    uploaded_file = request.files['file']
+    filename = secure_filename(uploaded_file.filename)
+    
+    ext = os.path.splitext(filename)[1].lower()
+    
+    if ext not in ['.pdf','.docx']:
+        return jsonify({"error":"unsupported file"}),400
 
     os.makedirs("uploadedPDFs", exist_ok=True) 
-    pdf_path = os.path.join("uploadedPDFs", filename)
-    pdf.save(pdf_path)
+    file_path = os.path.join("uploadedPDFs", filename)
+    uploaded_file.save(file_path)
 
     try:
-        docs = DocLoader(pdf_path)
+        docs = DocLoader(file_path)
         split = split_document(docs)
 
         file_name = os.path.splitext(filename)[0]
@@ -123,7 +132,7 @@ def upload_pdf():
         global qa_chain  
         qa_chain = create_chain_with_gemini(faiss_index)
 
-        return jsonify({"message": "PDF processed and FAISS stored","vectorPath":save_path}), 200
+        return jsonify({"message": "file processed and FAISS stored","vectorPath":save_path}), 200
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500

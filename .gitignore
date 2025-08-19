@@ -5,5 +5,10 @@ __pycache__/
 .DS_Store
 uploadedPDFs/
 faiss_index/
-StudyGenieModel.py
-public
+StudyGenie_Backend/public/
+StudyGenie_Frontend/public/
+StudyGenie_model/my_faiss_db
+StudyGenie_model/temp
+StudyGenie_model/StudyGenieModel.py
+__pycache__/
+*.pyc
