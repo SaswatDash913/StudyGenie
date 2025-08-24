@@ -23,6 +23,7 @@ const GenreateAccessRefreshToken = async(userId)=>{
 const creatingUser = AsyncHandler(async(req,res)=>{
     
     const {username,email,password} = req.body
+    console.log("Signup request body:", req.body)
 
     if([username,email,password].some(field => !field?.trim()))
     {
@@ -94,6 +95,7 @@ const LoginUser = AsyncHandler(async(req,res)=>{
 
 const HistoryHandle = AsyncHandler(async(req,res)=>{
     const filePath = req.file?.path
+    console.log(req.user)
     const userCurrent = req.user._id
     const loadingCloudinary = await UploadOnCloudinary(filePath)
     if(!loadingCloudinary)

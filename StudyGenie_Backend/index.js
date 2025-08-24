@@ -1,18 +1,15 @@
-import { app } from "./app.js"
-import './db/index.js'
-import dotenv from 'dotenv'
-import { connectDatabase } from "./db/index.js"
+import dotenv from "dotenv";
+dotenv.config({ path: "./.env" }); 
 
+import { app } from "./app.js";
+import { connectDatabase } from "./db/index.js";
 
-dotenv.config({
-    path:"./env"
-})
-
-connectDatabase().then(()=>{
-    app.listen(process.env.PORT || 8080,()=>{
-        console.log(`server is LIVE !! on ${process.env.PORT}`)
-    })
-}).catch(()=>{
-    console.log("error: " ,error)
-})
-
+connectDatabase()
+  .then(() => {
+    app.listen(process.env.PORT || 8080, () => {
+      console.log(`Server is LIVE on port ${process.env.PORT || 8080}`);
+    });
+  })
+  .catch((error) => {
+    console.log("Database connection error:", error);
+  });

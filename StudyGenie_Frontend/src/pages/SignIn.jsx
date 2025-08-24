@@ -23,13 +23,13 @@ function SignIn() {
     <div className='signIn-main'>
       <form className='SignIn-inner' onSubmit={handleSubmit}>
         <div className='UserName-singin'>
-          <input type='text' className='username-input-singin' placeholder='UserName' onChange={(e)=>setUsername(e.target.value)} />
+          <input type='text' className='username-input-singin' placeholder='UserName' value={username} onChange={(e)=>setUsername(e.target.value)} />
         </div>
         <div className='email-singin'>
-          <input type='email' className='email-input-signup' placeholder='Email' onChange={(e)=>setEmail(e.target.value)} />
+          <input type='email' className='email-input-signup' placeholder='Email' value={email}  onChange={(e)=>setEmail(e.target.value)} />
         </div>
         <div className='password-signin'>
-          <input type='password' className='password-input-singin' placeholder='Password' onChange={(e)=>setPassword(e.target.value)} />
+          <input type='password' className='password-input-singin' placeholder='Password' value={password} onChange={(e)=>setPassword(e.target.value)} />
         </div>
         <div className='submit-signin'>
           <button type='submit' className='submit-signin-btn'>SignUp</button>

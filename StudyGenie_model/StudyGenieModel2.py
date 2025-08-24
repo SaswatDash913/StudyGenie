@@ -36,22 +36,22 @@ def split_document(docs):
     return splitter.split_documents(docs)
 
 
-def store_Faiss(splits, save_path):
+def store_Faiss(splits, save_path1):
     embeddings = HuggingFaceEmbeddings(
         model_name='sentence-transformers/all-MiniLM-L6-v2', 
         model_kwargs={'device': 'cpu'}
     )
     faiss_index = FAISS.from_documents(splits, embedding=embeddings)
-    faiss_index.save_local(save_path)
+    faiss_index.save_local(save_path1)
     return faiss_index
 
 
-def load_Faiss(save_path):
+def load_Faiss(save_path1):
     embeddings = HuggingFaceEmbeddings(
         model_name='sentence-transformers/all-MiniLM-L6-v2',
         model_kwargs={'device': 'cpu'}
     )
-    return FAISS.load_local(save_path, embeddings,allow_dangerous_deserialization=True)
+    return FAISS.load_local(save_path1, embeddings,allow_dangerous_deserialization=True)
 
 def get_prompt_template():
     return PromptTemplate(

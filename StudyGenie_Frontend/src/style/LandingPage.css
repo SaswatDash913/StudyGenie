@@ -2,6 +2,7 @@
   min-height: 100vh;
   background-color: #fdf6f0; 
   padding: 20px 0;
+  background-color: black;
 }
 
 .LandingPage-inner {
@@ -40,4 +41,8 @@
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
   padding: 20px;
+}
+
+body{
+  background-color:black;
 }

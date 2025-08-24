@@ -1,4 +1,3 @@
-import { useEffect,useState,useCallback } from "react";
 import axios from "axios";
 const BASE_URL = "http://localhost:8000/api/ver1/user"
 
