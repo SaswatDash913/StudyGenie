@@ -23,7 +23,7 @@ function ModelPage() {
       setInput("");
     }
     if (file && userId) {
-      setMessage(prev => [...prev, `📄 File uploaded: ${file.name}`]);
+      setMessage(prev => [...prev, `File uploaded: ${file.name}`]);
       await uploadPDF(file);
       setFile(null);
     }
@@ -58,7 +58,7 @@ function ModelPage() {
 
         <div className='input-message'>
           <div className='input-message-holder'>
-            <input type='file' onChange={(e) => setFile(e.target.files[0])} />
+            <input type='file' className='file-upload-model' onChange={(e) => setFile(e.target.files[0])} />
             <input className='input-questions' placeholder='Ask or Upload...' value={input} onChange={(e) => setInput(e.target.value)} />
             <button className='submit-button' onClick={HandleShoot}>Shoot</button>
           </div>
